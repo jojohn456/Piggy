@@ -88,7 +88,7 @@ import { date } from 'quasar';
 import { db } from '../../db';
 import { useRouter } from 'vue-router';
 defineOptions({
-  name: 'AddMomPigPage',
+  name: 'EditMomPigPage',
 });
 const router = useRouter();
 const data = reactive({

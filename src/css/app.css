@@ -1,1 +1,15 @@
 /* app global css */
+
+html,
+body {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  scroll-behavior: smooth;
+  background-color: #ffc9d3;
+}
+
+.q-date__header {
+  background-color: #ff889e;
+}

@@ -58,7 +58,14 @@
                 </p>
                 <p>Notes: {{ mompig.Note }}</p>
                 <button
-                  class="btn btn-error w-full"
+                  class="btn btn-warning w-full mt-1 bg-[#ffff99] hover:bg-[#ffff99] border-2 rounded-xl border-[#000] hover:border-[#000]"
+                  variant="filled-warning"
+                  v-on:click="$router.push('/pregnancy-tracker')"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-error w-full mt-1 hover:bg-[#ff5861] border-2 rounded-xl border-[#000] hover:border-[#000]"
                   size="xl"
                   variant="filled-error"
                   v-on:click="RemoveItem(mompig.id)"

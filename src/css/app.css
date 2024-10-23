@@ -17,3 +17,7 @@ body {
 .bg-primary {
   background-color: #ff889e !important;
 }
+
+.error-message {
+  color: #ff704d;
+}

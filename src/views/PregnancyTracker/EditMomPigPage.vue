@@ -99,6 +99,11 @@ let props = defineProps({
 });
 
 let id = parseInt(props.id as string, 10);
+const data = reactive({
+  name: '',
+  note: '',
+  theDate: new Date(),
+});
 
 let mompigs: any = useObservable(
   from(
@@ -110,18 +115,13 @@ let mompigs: any = useObservable(
         .toArray()
         .then(function (results) {
           mompigs = results[0];
-          console.log(mompigs.Name);
+          data.name = mompigs.Name;
+          data.note = mompigs.Note;
+          data.theDate = mompigs.TheDate;
         });
     }),
   ),
 );
-
-console.log(mompigs);
-const data = reactive({
-  name: '',
-  note: '',
-  theDate: new Date(),
-});
 
 const rules = {
   name: [{ required: helpers.withMessage('firstname is required', required) }],
@@ -140,7 +140,7 @@ function ComputeDate(): void {
     let secondHeat = date.addToDate(myDate, { days: 42 });
     let vitamins = date.addToDate(myDate, { days: 100 });
     let farrowing = date.addToDate(myDate, { days: 114 });
-    db.mompigs.add({
+    db.mompigs.update(id, {
       Name: data.name,
       TheDate: data.theDate,
       Note: data.note,

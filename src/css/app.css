@@ -13,3 +13,7 @@ body {
 .q-date__header {
   background-color: #ff889e;
 }
+
+.bg-primary {
+  background-color: #ff889e !important;
+}

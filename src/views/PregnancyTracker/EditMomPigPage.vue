@@ -58,7 +58,7 @@
                   v-bind:disabled="addBtn"
                   v-on:click="ComputeDate"
                 >
-                  Add
+                  Save
                 </button>
               </div>
             </div>
@@ -85,21 +85,49 @@ import { reactive } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
 import { date } from 'quasar';
-import { db } from '../../db';
 import { useRouter } from 'vue-router';
+
+import { liveQuery } from 'dexie';
+import { useObservable, from } from '@vueuse/rxjs';
+import { db } from '../../db';
 defineOptions({
   name: 'EditMomPigPage',
 });
 const router = useRouter();
+let props = defineProps({
+  id: String,
+});
+
+let id = parseInt(props.id as string, 10);
+
+let mompigs: any = useObservable(
+  from(
+    liveQuery(async () => {
+      return await db
+        .table('mompigs')
+        .where('id')
+        .equals(id)
+        .toArray()
+        .then(function (results) {
+          mompigs = results[0];
+          console.log(mompigs.Name);
+        });
+    }),
+  ),
+);
+
+console.log(mompigs);
 const data = reactive({
   name: '',
   note: '',
   theDate: new Date(),
 });
+
 const rules = {
   name: [{ required: helpers.withMessage('firstname is required', required) }],
   theDate: [{ required: helpers.withMessage('date is required', required) }],
 };
+
 const v$ = useVuelidate(rules, data);
 let addBtn = false;
 function ComputeDate(): void {

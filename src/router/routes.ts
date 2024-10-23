@@ -26,6 +26,17 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/editmompig/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/PregnancyTracker/EditMomPigPage.vue'),
+        props: true,
+      },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

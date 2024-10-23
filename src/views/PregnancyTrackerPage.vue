@@ -35,10 +35,7 @@
         <div class="row p-2">
           <div class="col-12">
             <div class="card bg-white w-full shadow-xl">
-              <div
-                class="card-body"
-                v-on:click="$router.push('/pregnancy-tracker')"
-              >
+              <div class="card-body">
                 <h3 class="font-bold">{{ mompig.Name }}</h3>
                 <p>Date: {{ mompig.TheDate }}</p>
                 <p>
@@ -60,7 +57,7 @@
                 <button
                   class="btn btn-warning w-full mt-1 bg-[#ffff99] hover:bg-[#ffff99] border-2 rounded-xl border-[#000] hover:border-[#000]"
                   variant="filled-warning"
-                  v-on:click="$router.push('/pregnancy-tracker')"
+                  v-on:click="$router.push('/editmompig/' + mompig.id)"
                 >
                   Edit
                 </button>
